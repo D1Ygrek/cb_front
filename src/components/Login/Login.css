@@ -1,0 +1,8 @@
+.login-background{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px;
+    padding: 2rem;
+    background-color: #FFBD97;
+}

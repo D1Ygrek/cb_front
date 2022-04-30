@@ -1,0 +1,14 @@
+.site-layout{
+    height: 100vh;
+    background-color: #F5F0ED;
+}
+.site-layout-background {
+    display: flex;
+    margin: 100px;
+    min-height: 70%;
+    background: #E8E8E8;
+    border-radius: 40px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+}
