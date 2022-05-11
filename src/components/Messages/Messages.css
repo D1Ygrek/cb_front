@@ -1,0 +1,26 @@
+.message-bot{
+    border-radius: 1em;
+    background-color: #FFFFFF;
+    align-self: flex-start;
+    max-width:35vw;
+    min-width:5vw;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left:1em;
+    padding-right:1em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+.message-user{
+    border-radius: 1em;
+    background-color: #FFBD97;
+    align-self: flex-end;
+    max-width:35vw;
+    min-width:5vw;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left:1em;
+    padding-right:1em;
+    text-align: center;
+    margin-bottom: 1em;
+}

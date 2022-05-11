@@ -1,0 +1,18 @@
+.user-input-block{
+    display:flex;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    margin-left:10%;
+}
+.user-input{
+    border-radius: 1em !important;
+    margin-right: 5px !important;
+}
+.user-input-button{
+    border-radius: 50%;
+    border-style: none;
+    padding-left: 9px;
+    padding-right: 9px;
+    background-color: #304F53;
+}

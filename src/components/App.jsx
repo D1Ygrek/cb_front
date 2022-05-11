@@ -11,7 +11,6 @@ const checkUserLogged = (page, setPage, user, setUser) => {
   let userId = localStorage.getItem('chatUserId')
   console.log(userId)
   if(userId){
-    console.log('hui')
     if (user === null){
       setUser(userId)
     }
@@ -35,7 +34,7 @@ const App = () => {
         <div className="site-layout-background">
           {page === 'login' ? <LoginPage switchPage = {setPage} setUser = {setUser}/> : null}
           {page === 'registration' ? <RegistrationPage switchPage = {setPage} setUser = {setUser}/> : null}
-          {page === 'chat' ? <Chat/> : null}
+          {page === 'chat' ? <Chat user = {user}/> : null}
         </div>
       </Content>
     </Layout>

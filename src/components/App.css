@@ -6,6 +6,7 @@
     display: flex;
     margin: 100px;
     min-height: 70%;
+    max-height: 80%;
     background: #E8E8E8;
     border-radius: 40px;
     padding: 40px;
