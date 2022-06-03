@@ -13,6 +13,22 @@
     position: relative;
     
 }
+
+.variants-wrapper{
+    left: 10%;
+    display: flex;
+    position: absolute;
+    bottom:-50px;
+    flex-direction: row;
+}
+
+.variant{
+    border-radius: 1em;
+    padding: 10px;
+    background-color: #FFBD97;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 /* полоса прокрутки (скроллбар) */
 ::-webkit-scrollbar {
     width: 12px; /* ширина для вертикального скролла */
