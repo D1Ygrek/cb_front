@@ -8,7 +8,7 @@
     padding-bottom: 0.2em;
     padding-left:1em;
     padding-right:1em;
-    text-align: center;
+    text-align: left;
     margin-bottom: 1em;
 }
 .message-user{
@@ -16,11 +16,11 @@
     background-color: #FFBD97;
     align-self: flex-end;
     max-width:35vw;
-    min-width:5vw;
+    min-width:2vw;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
     padding-left:1em;
     padding-right:1em;
-    text-align: center;
+    text-align: left;
     margin-bottom: 1em;
 }

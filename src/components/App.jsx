@@ -34,7 +34,7 @@ const App = () => {
         <div className="site-layout-background">
           {page === 'login' ? <LoginPage switchPage = {setPage} setUser = {setUser}/> : null}
           {page === 'registration' ? <RegistrationPage switchPage = {setPage} setUser = {setUser}/> : null}
-          {page === 'chat' ? <Chat user = {user}/> : null}
+          {page === 'chat' ? <Chat user = {user} switchPage= {setPage}/> : null}
         </div>
       </Content>
     </Layout>

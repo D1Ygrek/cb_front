@@ -61,10 +61,17 @@ const Chat = (props) => {
       })
       const status = res.status
       console.log(status)
-      const data = await res.json()
-      setMessages(data.messages)
-      setVariants(data.variants)
-      console.log(data)
+      if (status === 200){
+        const data = await res.json()
+        setMessages(data.messages)
+        setVariants(data.variants)
+        console.log(data)
+      }
+      else if(status === 401){
+        console.log('f')
+        props.switchPage('login')
+        localStorage.removeItem('chatUserId')
+      }
     }
     getPrevMessages()
     const chatMain = document.getElementById('chatMain')
