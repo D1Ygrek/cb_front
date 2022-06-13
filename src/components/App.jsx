@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import './App.css'
 import LoginPage from './Login/Login';
 import RegistrationPage from './Registration/Registration';
+import ChatWrapper from './ChatWrapper/ChatWrapper';
 import Chat from './Chat/Chat';
 
 const { Content } = Layout;
@@ -34,7 +35,7 @@ const App = () => {
         <div className="site-layout-background">
           {page === 'login' ? <LoginPage switchPage = {setPage} setUser = {setUser}/> : null}
           {page === 'registration' ? <RegistrationPage switchPage = {setPage} setUser = {setUser}/> : null}
-          {page === 'chat' ? <Chat user = {user} switchPage= {setPage}/> : null}
+          {page === 'chat' ? <ChatWrapper user = {user} switchPage= {setPage}/> : null}
         </div>
       </Content>
     </Layout>

@@ -1,0 +1,12 @@
+.menu-main{
+    background: none !important;
+    padding-top: 20px;
+    height:100% !important;
+}
+.ant-menu{
+    background: none !important;
+}
+.ant-layout-sider-trigger{
+    background: #FFBD97 !important;
+    position: relative !important;
+}

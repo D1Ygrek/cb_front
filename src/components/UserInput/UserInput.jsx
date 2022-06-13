@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { Input, Form } from 'antd'
+import { Input, Form, message } from 'antd'
 import { ArrowUpOutlined } from '@ant-design/icons'
 import './UserInput.css'
 
-async function sendUserUpdate(message, userId, setMessages , chatMain, messages, variants, setVariants){
+async function sendUserUpdate(
+  message,
+  userId,
+  setMessages, 
+  chatMain, 
+  messages,
+  variants, 
+  setVariants,
+  setCantWrite){
   setMessages([...messages, {sender: 'user', message: message}])
   setTimeout(() => {chatMain.scrollTop = chatMain.scrollHeight}, 40)
   //console.log(message, userId)
@@ -24,6 +32,13 @@ async function sendUserUpdate(message, userId, setMessages , chatMain, messages,
   if(status === 200){
     let data = await result.json()
     console.log(data)
+    if(data.variants.length === 1 && data.variants[0].variant[0] === '#'){
+      console.log('should be false')
+      setCantWrite(false)
+    }else{
+      console.log('should be true')
+      setCantWrite(true)
+    }
     setMessages(data.messages)
     setVariants(data.variants)
   }
@@ -33,22 +48,34 @@ async function sendUserUpdate(message, userId, setMessages , chatMain, messages,
 const UserInput = (props) => {
 
   const onFinish = () => {
-    setInputValue("")
-    sendUserUpdate(
-      inputValue,
-      props.userId,
-      props.setMessages,
-      props.chatMain,
-      props.messages,
-      props.variants,
-      props.setVariants)
+    if((Number.isInteger(parseInt(inputValue))) && (parseInt(inputValue)>=0) && (parseInt(inputValue)<=10)){
+      setInputValue("")
+      sendUserUpdate(
+        inputValue,
+        props.userId,
+        props.setMessages,
+        props.chatMain,
+        props.messages,
+        props.variants,
+        props.setVariants,
+        props.setCantWrite)
+    }else{
+      message.error('Введите число от 0 до 10')
+    }
+    
   }
 
   const [inputValue, setInputValue] = useState("")
   return(
     <div className='user-input-block'>
       <Form style={{width: '100%'}} className='user-input' onFinish={onFinish}>
-      <Input value = {inputValue} onChange={(e) => setInputValue(e.target.value)} id="userInput" className='user-input' placeholder='Твое сообщение'/>
+      <Input
+        disabled = {props.canWrite}
+        value = {inputValue} 
+        onChange={(e) => setInputValue(e.target.value)} 
+        id="userInput" 
+        className='user-input' 
+        placeholder='Твое сообщение'/>
       </Form>
         <button 
           className='user-input-button'

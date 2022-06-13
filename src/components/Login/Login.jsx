@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Button, message } from 'antd';
 import './Login.css'
 
-async function authentificate(userName, setUser, switchPage){
+async function authentificate(userName, password, setUser, switchPage){
   let result = await fetch(
     'http://localhost:5000/login',
     {
@@ -11,7 +11,8 @@ async function authentificate(userName, setUser, switchPage){
         'Content-Type': 'application/json;charset=utf-8'
       },
       body: JSON.stringify({
-        login: userName
+        login: userName,
+        password: password
       })
     }
   )
@@ -41,7 +42,8 @@ const LoginPage = (props) => {
   return(
     <div className='login-background'>
       <p>Авторизация</p>
-      <Input style={{borderRadius:'1em'}} id="loginInput"/>
+      <Input placeholder='Логин' className='log-input' id="loginInput"/>
+      <Input.Password placeholder='Пароль' className='log-input' id="passwordInput"/>
       <Button 
         onClick={() => props.switchPage('registration')} 
         type='link' 
@@ -51,6 +53,7 @@ const LoginPage = (props) => {
       <Button
         onClick={() => authentificate(
           document.getElementById('loginInput').value,
+          document.getElementById('passwordInput').value,
           props.setUser, 
           props.switchPage)} 
         type='primary' 

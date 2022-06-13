@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Button, message } from 'antd';
 import './Registration.css'
 
-async function register(userName, setUser, switchPage){
+async function register(userName, password, setUser, switchPage){
   let result = await fetch(
     'http://localhost:5000/new_user',
     {
@@ -11,7 +11,8 @@ async function register(userName, setUser, switchPage){
         'Content-Type': 'application/json;charset=utf-8'
       },
       body: JSON.stringify({
-        login: userName
+        login: userName,
+        password: password
       })
     }
   )
@@ -41,7 +42,8 @@ const RegistrationPage = (props) => {
   return(
     <div className='login-background'>
       <p>Регистрация</p>
-      <Input style={{borderRadius:'1em'}} id="regInput"/>
+      <Input placeholder='Логин' className='log-input' id="regInput"/>
+      <Input.Password placeholder='Пароль' className='log-input' id="regPasswInput"/>
       <Button
         onClick={() => props.switchPage('login')} 
         type='link' 
@@ -51,6 +53,7 @@ const RegistrationPage = (props) => {
       <Button
         onClick={() => register(
           document.getElementById('regInput').value,
+          document.getElementById('regPasswInput').value,
           props.setUser,
           props.switchPage
         )}

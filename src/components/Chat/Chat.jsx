@@ -12,7 +12,8 @@ async function sendChosenUpdate(
   setVariants,
   setMessages, 
   chatMain, 
-  messages){
+  messages,
+  setCantWrite){
   setMessages([...messages, {sender: 'user', message: variantMessage}])
   setTimeout(() => {chatMain.scrollTop = chatMain.scrollHeight}, 40)
   let result = await fetch(
@@ -33,6 +34,13 @@ async function sendChosenUpdate(
   if(status == 200){
     let data = await result.json()
     console.log(data)
+    if(data.variants.length === 1 && data.variants[0].variant[0] === '#'){
+      console.log('should be false')
+      setCantWrite(false)
+    }else{
+      console.log('should be true')
+      setCantWrite(true)
+    }
     setMessages(data.messages)
     setVariants(data.variants)
   }
@@ -46,6 +54,7 @@ async function sendChosenUpdate(
 const Chat = (props) => {
   const [messages, setMessages] = useState(null)
   const [variants, setVariants] = useState(null)
+  const [cantWrite, setCantWrite] = useState(true)
 
   useEffect(() => {
     async function getPrevMessages(){
@@ -63,6 +72,13 @@ const Chat = (props) => {
       console.log(status)
       if (status === 200){
         const data = await res.json()
+        if(data.variants.length === 1 && data.variants[0].variant[0] === '#'){
+          console.log('should be false')
+          setCantWrite(false)
+        }else{
+          console.log('should be true')
+          setCantWrite(true)
+        }
         setMessages(data.messages)
         setVariants(data.variants)
         console.log(data)
@@ -100,7 +116,17 @@ const Chat = (props) => {
   const variantsGeneratorr = () => {
     if(variants){
       return variants.map((item) =>{
-        if(item.variant[0] !== "#")
+        console.log(item.variant)
+        if(item.direction === "$call_specialist"){
+          return (
+            <div className='variant'>
+              <a className='text' href="tel:+73022401483">
+                Вызвать специалиста
+              </a>
+            </div> 
+          )
+          }
+        if(item.variant[0] !== "#"){
         return <div className='variant' onClick={() => {sendChosenUpdate(
           item.direction,
           item.variant,
@@ -108,14 +134,15 @@ const Chat = (props) => {
           setVariants,
           setMessages,
           document.getElementById('chatMain'),
-          messages
-        )}}>{item.variant}</div>
+          messages,
+          setCantWrite
+        )}}>{item.variant}</div>}
       })
     }
   }
 
   return(
-    <div className='chat-wrapper'>
+    <>
       <div className='chat-main' id='chatMain'>
         {messagesGenerator()}
       
@@ -126,11 +153,13 @@ const Chat = (props) => {
       setVariants = {setVariants}
       chatMain ={document.getElementById('chatMain')}
       messages = {messages}
-      variants = {variants}/>
+      variants = {variants}
+      canWrite = {cantWrite}
+      setCantWrite = {setCantWrite}/>
       <div className='variants-wrapper'>
         {variantsGeneratorr()}
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,9 +1,8 @@
 .user-input-block{
     display:flex;
     position: absolute;
-    bottom: 0;
-    width: 90%;
-    margin-left:10%;
+    bottom: 50px;
+    width: 80%;
 }
 .user-input{
     border-radius: 1em !important;
